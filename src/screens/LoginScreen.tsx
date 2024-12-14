@@ -7,10 +7,14 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import Illustration from '../components/Illustration';
 
 type LoginScreenProps = {};
 
 const LoginScreen: React.FC<LoginScreenProps> = () => {
+  const navigation = useNavigation();
+
   const [inputText, setInputText] = useState('');
   const themeColor = '#6C63FF'; // Existing theme color
 
@@ -21,6 +25,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
   const handlePress = () => {
     // Handle OTP button press logic here
     console.log('OTP Requested');
+    navigation.navigate('Otp' as never);
   };
 
   return (
@@ -31,13 +36,8 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
         style={styles.logo}
         resizeMode="contain"
       />
-      <View style={styles.illustrationContainer}>
-        <Image
-          source={require('../assets/login.png')}
-          style={styles.placeholder}
-          resizeMode="contain"
-        />
-      </View>
+
+      <Illustration source={require('../assets/login.png')} />
 
       {/* Content */}
       <View style={styles.contentContainer}>
@@ -59,7 +59,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
             styles.button,
             {backgroundColor: inputText ? themeColor : '#DDDCF3'}, // Button color based on input
           ]}
-          disabled={!inputText} // Disable button when input is empty
+          disabled={!inputText}
           onPress={handlePress}>
           <Text style={styles.buttonText}>Get OTP</Text>
         </TouchableOpacity>

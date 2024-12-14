@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import OtpScreen from '../screens/OtpScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,13 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Otp"
+          component={OtpScreen}
           options={{
             headerShown: false,
           }}
