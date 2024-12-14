@@ -10,23 +10,66 @@ import {
   Image,
 } from 'react-native';
 import Illustration from '../components/Illustration';
+import {useNavigation} from '@react-navigation/native';
+import Toast from 'react-native-toast-message';
 
 const OtpScreen: React.FC = () => {
+  const navigation = useNavigation();
+
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(10);
+  const [showResendButton, setShowResendButton] = useState(false);
   const inputRefs = useRef<Array<TextInput | null>>([]);
+  const timerRef = useRef<NodeJS.Timeout | null>(null); // Reference for the timer interval
 
-  // Countdown timer
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
+    // Start the timer when the component is mounted
+    startTimer();
 
-    return () => clearInterval(interval);
+    // Cleanup interval on component unmount
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
   }, []);
 
-  // Check if OTP is fully filled
+  const startTimer = () => {
+    // Clear any existing interval
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+
+    // Start a new interval
+    timerRef.current = setInterval(() => {
+      setTimer(prev => {
+        if (prev <= 1) {
+          clearInterval(timerRef.current!);
+          setShowResendButton(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  // Restart Timer when Resend is clicked
+  const handleResendOtp = () => {
+    console.log('OTP Resent');
+    setTimer(10);
+    setShowResendButton(false);
+    startTimer(); // Start the timer again
+
+    Toast.show({
+      type: 'success',
+      text1: 'OTP Sent',
+      text2: 'A new OTP has been sent successfully.',
+    });
+    // TODO: Add API call to resend OTP here
+  };
+
+  // Check if OTP is completely filled
   useEffect(() => {
     const isFilled = otp.every(digit => digit !== '');
     setIsButtonDisabled(!isFilled);
@@ -34,7 +77,9 @@ const OtpScreen: React.FC = () => {
 
   // Handle input change for each box
   const handleChange = (text: string, index: number) => {
-    if (text.length > 1) return; // Allow only single digit
+    if (text.length > 1) {
+      return;
+    }
     const newOtp = [...otp];
     newOtp[index] = text;
     setOtp(newOtp);
@@ -58,6 +103,7 @@ const OtpScreen: React.FC = () => {
   const handleSubmitOtp = () => {
     const finalOtp = otp.join('');
     console.log('OTP Submitted:', finalOtp);
+    navigation.navigate('StudentSelection' as never);
   };
 
   return (
@@ -100,12 +146,18 @@ const OtpScreen: React.FC = () => {
           <Text style={styles.buttonText}>Verify</Text>
         </TouchableOpacity>
 
-        <Text style={styles.resendText}>
-          Re-send code in{' '}
-          <Text style={styles.boldText}>{`0:${
-            timer < 10 ? `0${timer}` : timer
-          }`}</Text>
-        </Text>
+        {showResendButton ? (
+          <TouchableOpacity onPress={handleResendOtp}>
+            <Text style={styles.resendText}>Resend OTP</Text>
+          </TouchableOpacity>
+        ) : (
+          <Text style={styles.resendText}>
+            Re-send code in{' '}
+            <Text style={styles.boldText}>{`0:${
+              timer < 10 ? `0${timer}` : timer
+            }`}</Text>
+          </Text>
+        )}
       </View>
     </KeyboardAvoidingView>
   );
@@ -116,10 +168,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 20,
-  },
-  header: {
-    marginTop: 60,
-    alignItems: 'center',
   },
   logo: {
     width: 150,

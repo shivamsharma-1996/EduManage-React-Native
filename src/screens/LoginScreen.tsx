@@ -16,21 +16,19 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
   const navigation = useNavigation();
 
   const [inputText, setInputText] = useState('');
-  const themeColor = '#6C63FF'; // Existing theme color
+  const themeColor = '#6C63FF';
 
   const handleInputChange = (text: string) => {
     setInputText(text);
   };
 
   const handlePress = () => {
-    // Handle OTP button press logic here
     console.log('OTP Requested');
     navigation.navigate('Otp' as never);
   };
 
   return (
     <View style={styles.container}>
-      {/* Header */}
       <Image
         source={require('../assets/educonnect.png')}
         style={styles.logo}
@@ -57,7 +55,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
         <TouchableOpacity
           style={[
             styles.button,
-            {backgroundColor: inputText ? themeColor : '#DDDCF3'}, // Button color based on input
+            {backgroundColor: inputText ? themeColor : '#DDDCF3'},
           ]}
           disabled={!inputText}
           onPress={handlePress}>

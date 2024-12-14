@@ -4,6 +4,7 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import LoginScreen from '../screens/LoginScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import OtpScreen from '../screens/OtpScreen';
+import StudentSelectionScreen from '../screens/StudentSelection';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,13 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen
           name="Otp"
           component={OtpScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="StudentSelection"
+          component={StudentSelectionScreen}
           options={{
             headerShown: false,
           }}

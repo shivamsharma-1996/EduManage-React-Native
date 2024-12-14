@@ -32,8 +32,9 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = () => {
         <TouchableOpacity
           style={styles.parentButton}
           onPress={() => {
+            // TODO: Pass userType to the Login screen
             // navigation.navigate('Login', {
-            //   registeredCuid: 'cuid',
+            //   userType: 'userType',
             // });
             navigation.navigate('Login' as never);
           }}>
