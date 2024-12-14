@@ -31,13 +31,18 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = () => {
       <View style={styles.contentContainer}>
         <TouchableOpacity
           style={styles.parentButton}
-          onPress={() => navigation.navigate('ParentLogin' as never)}>
+          onPress={() => {
+            // navigation.navigate('Login', {
+            //   registeredCuid: 'cuid',
+            // });
+            navigation.navigate('Login' as never);
+          }}>
           <Text style={styles.parentButtonText}>Login as Parent</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.staffButton}
-          onPress={() => navigation.navigate('StaffLogin' as never)}>
+          onPress={() => navigation.navigate('Login' as never)}>
           <Text style={styles.staffButtonText}>Login as Staff</Text>
         </TouchableOpacity>
       </View>
@@ -75,7 +80,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   parentButton: {
-    backgroundColor: '#4B5FFF',
+    backgroundColor: '#6C63FF',
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 8,
