@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   profileImage: {
-    width: 60,
-    height: 60,
+    width: 50,
+    height: 50,
   },
   profileName: {
     marginTop: 8,

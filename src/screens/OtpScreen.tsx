@@ -7,11 +7,11 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
-  Image,
 } from 'react-native';
 import Illustration from '../components/Illustration';
 import {useNavigation} from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
+import Logo from '../components/Logo';
 
 const OtpScreen: React.FC = () => {
   const navigation = useNavigation();
@@ -110,11 +110,7 @@ const OtpScreen: React.FC = () => {
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       style={styles.container}>
-      <Image
-        source={require('../assets/educonnect.png')}
-        style={styles.logo}
-        resizeMode="contain"
-      />
+      <Logo />
 
       <Illustration source={require('../assets/otp.png')} />
 
@@ -168,11 +164,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     paddingHorizontal: 20,
-  },
-  logo: {
-    width: 150,
-    height: 80,
-    marginTop: 30,
   },
   contentContainer: {
     marginTop: 40,

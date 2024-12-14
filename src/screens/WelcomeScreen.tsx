@@ -4,10 +4,10 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Image,
   Dimensions,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
+import Logo from '../components/Logo';
 
 type WelcomeScreenProps = {};
 
@@ -17,11 +17,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = () => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Image
-          source={require('../assets/educonnect.png')}
-          style={styles.logo}
-          resizeMode="contain"
-        />
+        <Logo />
         <Text style={styles.subtitle}>
           Welcome to EduConnect: Bridging the Gap Between Schools, Teachers, and
           Parents.
@@ -62,10 +58,6 @@ const styles = StyleSheet.create({
     flex: 0,
     alignItems: 'center',
     marginTop: height * 0.2, // Positions logo at 30% of screen height
-  },
-  logo: {
-    width: 200,
-    height: 80,
   },
   contentContainer: {
     flex: 1,

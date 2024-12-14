@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
 import ProfileCard from '../components/ProfileCard'; // Import the new ProfileCard component
 import Illustration from '../components/Illustration';
+import {useNavigation} from '@react-navigation/native';
+import Logo from '../components/Logo';
 
 const profiles = [
   {id: '1', name: 'Anuv', image: require('../assets/boyAvatar.png')},
@@ -12,11 +14,11 @@ const profiles = [
 ];
 
 const StudentSelectionScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>
-        <Text style={styles.highlightedText}>Class</Text>pus
-      </Text>
+      <Logo />
 
       <Illustration source={require('../assets/studentSelection.png')} />
 
@@ -30,7 +32,9 @@ const StudentSelectionScreen = () => {
           <ProfileCard
             name={item.name}
             image={item.image}
-            onPress={() => console.log(`${item.name} clicked`)}
+            onPress={() => {
+              navigation.navigate('Home' as never);
+            }}
           />
         )}
         contentContainerStyle={{
@@ -47,16 +51,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F9F9F9',
     paddingHorizontal: 20,
-    paddingTop: 50,
-  },
-  headerText: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#2D2D2D',
-    textAlign: 'left',
-  },
-  highlightedText: {
-    color: '#6C63FF',
   },
   illustrationContainer: {
     alignItems: 'center',
