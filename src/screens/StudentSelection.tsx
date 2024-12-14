@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
+import ProfileCard from '../components/ProfileCard'; // Import the new ProfileCard component
 import Illustration from '../components/Illustration';
 
 const profiles = [
@@ -16,15 +10,6 @@ const profiles = [
   {id: '4', name: 'Rishika', image: require('../assets/girlAvatar.png')},
   {id: '5', name: 'Lokesh', image: require('../assets/boyAvatar.png')},
 ];
-
-const ProfileCard = ({name, image, onPress}) => (
-  <TouchableOpacity style={styles.card} onPress={onPress}>
-    <View style={styles.profileImageContainer}>
-      <Image source={image} style={styles.profileImage} resizeMode="contain" />
-    </View>
-    <Text style={styles.profileName}>{name}</Text>
-  </TouchableOpacity>
-);
 
 const StudentSelectionScreen = () => {
   return (
@@ -91,30 +76,6 @@ const styles = StyleSheet.create({
   profileList: {
     justifyContent: 'flex-start',
     marginTop: 10,
-  },
-  card: {
-    alignItems: 'center',
-    margin: 10,
-    width: 90,
-  },
-  profileImageContainer: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    borderWidth: 2,
-    borderColor: '#6C63FF',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  profileImage: {
-    width: 60,
-    height: 60,
-  },
-  profileName: {
-    marginTop: 8,
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#2D2D2D',
   },
 });
 
