@@ -106,6 +106,11 @@ const OtpScreen: React.FC = () => {
     navigation.navigate('StudentSelection' as never);
   };
 
+  const otpBoxWidth = 45; // Width of each OTP box
+  const otpBoxSpacing = 10; // Spacing between OTP boxes
+  const otpCount = otp.length; // Number of OTP boxes
+  const buttonWidth = otpBoxWidth * otpCount + otpBoxSpacing * (otpCount - 1);
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -135,7 +140,10 @@ const OtpScreen: React.FC = () => {
         <TouchableOpacity
           style={[
             styles.button,
-            {backgroundColor: isButtonDisabled ? '#D6CFFF' : '#7E57FF'},
+            {
+              backgroundColor: isButtonDisabled ? '#D6CFFF' : '#7E57FF',
+              width: buttonWidth,
+            },
           ]}
           disabled={isButtonDisabled}
           onPress={handleSubmitOtp}>
@@ -163,7 +171,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingHorizontal: 20,
   },
   contentContainer: {
     marginTop: 40,
@@ -184,8 +191,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#DDD',
     borderRadius: 8,
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     marginHorizontal: 5,
     fontSize: 18,
     textAlign: 'center',

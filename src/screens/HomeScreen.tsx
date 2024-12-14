@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import ProfileCard from '../components/ProfileCard'; // Import the ProfileCard component
+import ProfileCard from '../components/ProfileCard';
 import Logo from '../components/Logo';
 
 const menuItems = [
@@ -29,7 +29,7 @@ const HomeScreen = () => {
 
       {/* Header with Select Profile and Bell */}
       <View style={styles.headerContainer}>
-        <Text style={styles.selectProfileText}>Your Dashboard</Text>
+        <Text style={styles.label}>Your Dashboard</Text>
 
         {/* Notification Bell */}
         <TouchableOpacity
@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9F9F9',
-    paddingHorizontal: 20,
   },
   logo: {
     width: 150,
@@ -75,12 +74,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  selectProfileText: {
+  label: {
     fontSize: 20,
     fontWeight: '600',
     color: '#2D2D2D',
-    marginBottom: 10,
-    marginLeft: 10,
+    marginTop: 10,
+    marginLeft: 20,
   },
   bellIconContainer: {
     position: 'absolute',

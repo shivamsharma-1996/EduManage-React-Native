@@ -13,6 +13,7 @@ const Logo: React.FC = () => {
 
 const styles = StyleSheet.create({
   logo: {
+    marginStart: 20,
     width: 150,
     height: 80,
   },

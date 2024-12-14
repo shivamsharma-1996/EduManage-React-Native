@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
-import ProfileCard from '../components/ProfileCard'; // Import the new ProfileCard component
+import ProfileCard from '../components/ProfileCard';
 import Illustration from '../components/Illustration';
 import {useNavigation} from '@react-navigation/native';
 import Logo from '../components/Logo';
@@ -20,10 +20,12 @@ const StudentSelectionScreen = () => {
     <View style={styles.container}>
       <Logo />
 
-      <Illustration source={require('../assets/studentSelection.png')} />
+      <View style={styles.topSection}>
+        <Illustration source={require('../assets/studentSelection.png')} />
+        <Text style={styles.selectProfileText}>Select Profile</Text>
+      </View>
 
-      <Text style={styles.selectProfileText}>Select Profile</Text>
-
+      {/* Profile List */}
       <FlatList
         data={profiles}
         numColumns={3}
@@ -37,10 +39,7 @@ const StudentSelectionScreen = () => {
             }}
           />
         )}
-        contentContainerStyle={{
-          paddingLeft: 10,
-          paddingRight: 10,
-        }}
+        contentContainerStyle={styles.profileListContainer}
       />
     </View>
   );
@@ -50,26 +49,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9F9F9',
-    paddingHorizontal: 20,
   },
-  illustrationContainer: {
-    alignItems: 'center',
-    marginVertical: 20,
-  },
-  illustrationImage: {
-    width: 250,
-    height: 180,
+  topSection: {
+    marginBottom: 20,
   },
   selectProfileText: {
     fontSize: 20,
     fontWeight: '600',
     color: '#2D2D2D',
-    marginBottom: 10,
-    marginLeft: 10,
-  },
-  profileList: {
-    justifyContent: 'flex-start',
     marginTop: 10,
+    marginLeft: 20,
+  },
+  profileListContainer: {
+    paddingHorizontal: 10,
+    paddingBottom: 20,
+    justifyContent: 'center',
   },
 });
 

@@ -46,6 +46,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
           <TextInput
             style={styles.input}
             placeholder="Enter Mobile Number"
+            placeholderTextColor="#888"
             keyboardType="phone-pad"
             value={inputText}
             onChangeText={handleInputChange}
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   button: {
-    height: 60,
+    height: 50,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',

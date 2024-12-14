@@ -22,11 +22,10 @@ const Illustration: React.FC<IllustrationProps> = ({source, style}) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginTop: 20,
   },
   image: {
-    width: 250,
-    height: 250,
+    width: 230,
+    height: 230,
   },
 });
 
